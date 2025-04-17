@@ -16,3 +16,11 @@ pytest
 requests
 tenacity
 termcolor
+
+openai==1.70.0
+Pillow==11.1.0
+python-dotenv==1.1.0
+replicate==1.0.4
+langchain_openai
+langgraph
+langsmith

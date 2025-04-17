@@ -1,0 +1,188 @@
+[
+    {
+        "name": "type",
+        "description": "Use this to tap on an input field and then type some text on the screen",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text which you want to type on the screen."
+                },
+                "position": {
+                    "type": "string",
+                    "description": "A short verbal string explanation of which text field you wish to tap on (~15 words max). This description must be for an area which is findable for a simple SAM model to find as a bounding box. Specify the size, colour, and rough position on the screen. This should be a nominal phrase"
+                },
+                "justification": {
+                    "type": "string",
+                    "description": "The reasoning for why this text makes sense to type, given the context of the task"
+                }
+            },
+            "required": [
+                "text",
+                "position",
+                "justification"
+            ]
+        }
+    },
+    {
+        "name": "tap",
+        "description": "Tap on a specific part of the screen",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "position": {
+                    "type": "string",
+                    "description": "A short verbal string explanation of which icon, button or text you wish to tap on (~15 words max). This description must be for an area which is findable for a simple SAM model to find as a bounding box. Specify the size, colour, and rough position on the screen. This should be a nominal phrase"
+                },
+                "justification": {
+                    "type": "string",
+                    "description": "The reasoning for why it makes sense to tap here, given the context of the task"
+                }
+            },
+            "required": [
+                "position",
+                "justification"
+            ]
+        }
+    },
+    {
+        "name": "long_tap",
+        "description": "Long tap on a specific part of the screen",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "position": {
+                    "type": "string",
+                    "description": "A short verbal string explanation of which icon, button or text you wish to long tap on (~15 words max). This description must be for an area which is findable for a simple SAM model to find as a bounding box. Specify the size, colour, and rough position on the screen.This should be a nominal phrase"
+                },
+                "justification": {
+                    "type": "string",
+                    "description": "The reasoning for why it makes sense to long tap here, given the context of the task"
+                }
+            },
+            "required": [
+                "position",
+                "justification"
+            ]
+        }
+    },
+    {
+        "name": "press_enter",
+        "description": "Press the enter key to submit the text you have just typed in a text field",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "justification": {
+                    "type": "string",
+                    "description": "The reasoning for why it makes sense to press enter, given the context of the task"
+                }
+            },
+            "required": [
+                "justification"
+            ]
+        }
+    },
+    {
+        "name": "go_back",
+        "description": "Go back to the previous page or screen",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "justification": {
+                    "type": "string",
+                    "description": "The reasoning for why it makes sense to go back, given the context of the task"
+                }
+            },
+            "required": [
+                "justification"
+            ]
+        }
+    },
+    {
+        "name": "go_home",
+        "description": "Go to the home screen of the phone",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "justification": {
+                    "type": "string",
+                    "description": "The reasoning for why it makes sense to go to the home screen, given the context of the task"
+                }
+            },
+            "required": [
+                "justification"
+            ]
+        }
+    },
+    {
+        "name": "exit",
+        "description": "Once the task is deemed to be finished, this exits and marks the task as finished",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "justification": {
+                    "type": "string",
+                    "description": "The reasoning for why it makes sense to mark the task as finished, given the context of the task"
+                }
+            },
+            "required": [
+                "justification"
+            ]
+        }
+    },
+    {
+        "name": "give_final_answer",
+        "description": "If the long term task is a question requiring information retrieval, this exits the task and also allows you to provide a final answer to the query",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "justification": {
+                    "type": "string",
+                    "description": "The reasoning for why it makes sense to mark the task as finished, given the context of the task"
+                },
+                "answer": {
+                    "type": "string",
+                    "description": "The final answer to the question posed in the long term task"
+                }
+            },
+            "required": [
+                "justification",
+                "answer"
+            ]
+        }
+    },
+    {
+        "name": "swipe",
+        "description": "Swipe up,down,left or right on the screen",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "justification": {
+                    "type": "string",
+                    "description": "The reasoning for why it makes sense to swipe"
+                },
+                "direction": {
+                    "type": "string",
+                    "enum": [
+                        "up",
+                        "down",
+                        "left",
+                        "right"
+                    ],
+                    "description": "The direction to swipe",
+                    "default": "up"
+                },
+                "position": {
+                    "type": "string",
+                    "description": "A short verbal string explanation of where on the screen to swipe from (~15 words max). Choose an object within the viewport of where you want the swipe to happen from. This description must be for an object which is findable for a simple SAM model to find as a bounding box. Specify the size, colour, and rough position on the screen. This should be a nominal phrase"
+                }
+            },
+            "required": [
+                "justification",
+                "direction",
+                "position"
+            ]
+        }
+    }
+]

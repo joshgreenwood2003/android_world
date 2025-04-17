@@ -36,6 +36,7 @@ from android_world.agents import m3a
 from android_world.agents import random_agent
 from android_world.agents import seeact
 from android_world.agents import t3a
+from android_world.agents import darkagent
 from android_world.env import env_launcher
 from android_world.env import interface
 
@@ -50,6 +51,7 @@ def _find_adb_directory() -> str:
   potential_paths = [
       os.path.expanduser('~/Library/Android/sdk/platform-tools/adb'),
       os.path.expanduser('~/Android/Sdk/platform-tools/adb'),
+      os.path.expanduser("C:/users/joshg/AppData/Local/Android/Sdk/platform-tools/adb.exe")
   ]
   for path in potential_paths:
     if os.path.isfile(path):
@@ -178,6 +180,8 @@ def _get_agent(
   # SeeAct.
   elif _AGENT_NAME.value == 'seeact':
     agent = seeact.SeeAct(env)
+  elif _AGENT_NAME.value == 'darkagent':
+    agent = darkagent.DarkAgent(env)
 
   if not agent:
     raise ValueError(f'Unknown agent: {_AGENT_NAME.value}')

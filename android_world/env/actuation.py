@@ -151,21 +151,42 @@ def execute_adb_action(
     screen_width, screen_height = screen_size
     mid_x, mid_y = 0.5 * screen_width, 0.5 * screen_height
     direction = action.direction
-    if direction == 'down':
-      start_x, start_y = mid_x, 0
-      end_x, end_y = mid_x, screen_height
-    elif direction == 'up':
-      start_x, start_y = mid_x, screen_height
-      end_x, end_y = mid_x, 0
-    elif direction == 'left':
-      start_x, start_y = 0, mid_y
-      end_x, end_y = screen_width, mid_y
-    elif direction == 'right':
-      start_x, start_y = screen_width, mid_y
-      end_x, end_y = 0, mid_y
+    if action.x is not None and action.y is not None:
+      if direction == 'down':
+        SWIPE_AMOUNT = screen_height
+        start_x, start_y = action.x, action.y
+        end_x, end_y = action.x, min(action.y + SWIPE_AMOUNT, screen_height)
+      elif direction == 'up':
+        SWIPE_AMOUNT = screen_height
+        start_x, start_y = action.x, action.y
+        end_x, end_y = action.x,max(action.y - SWIPE_AMOUNT, 0)
+      elif direction == 'left':
+        SWIPE_AMOUNT = screen_width
+        start_x, start_y = action.x, action.y
+        end_x, end_y = max(action.x - SWIPE_AMOUNT,0), action.y
+      elif direction == 'right':
+        SWIPE_AMOUNT = screen_width
+        start_x, start_y = action.x, action.y
+        end_x, end_y = min(action.x + SWIPE_AMOUNT,screen_width), action.y
+      else:
+        print('Invalid direction')
+        return
     else:
-      print('Invalid direction')
-      return
+      if direction == 'down':
+        start_x, start_y = mid_x, 0
+        end_x, end_y = mid_x, screen_height
+      elif direction == 'up':
+        start_x, start_y = mid_x, screen_height
+        end_x, end_y = mid_x, 0
+      elif direction == 'left':
+        start_x, start_y = 0, mid_y
+        end_x, end_y = screen_width, mid_y
+      elif direction == 'right':
+        start_x, start_y = screen_width, mid_y
+        end_x, end_y = 0, mid_y
+      else:
+        print('Invalid direction')
+        return
     command = adb_utils.generate_swipe_command(
         int(start_x), int(start_y), int(end_x), int(end_y), 500
     )

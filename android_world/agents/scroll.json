@@ -1,0 +1,32 @@
+{
+    "name": "scroll",
+    "description": "Scroll up or down the screen",
+    "parameters": {
+        "type": "object",
+        "properties": {
+            "justification": {
+                "type": "string",
+                "description": "The reasoning for why it makes sense to scroll, given the context of the task"
+            },
+            "direction": {
+                "type": "string",
+                "enum": [
+                    "up",
+                    "down"
+                ],
+                "description": "The direction to scroll",
+                "default": "down"
+            },
+            "amount": {
+                "type": "integer",
+                "description": "The amount to scroll in percentage of the screen. I.e. if the screen resolution is 2400 pixels high and the value here is 50, then the screen will scroll 1200 pixels downwards. The value must be between 0 and 100, inclusive.",
+                "default": 50
+            }
+        },
+        "required": [
+            "justification",
+            "direction",
+            "amount"
+        ]
+    }
+}
